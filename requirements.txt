@@ -1,0 +1,14 @@
+fastapi
+pydantic==1.*
+uvicorn
+python-jose[cryptography]
+pydantic[email]
+sqlalchemy
+psycopg2-binary
+python-dotenv
+asyncpg
+sqlmodel
+httpx
+requests
+pytest
+pytest_asyncio
