@@ -125,7 +125,7 @@ async def get_product(
 )
 async def get_products(
     database: ProductDatabase = Depends(get_database(ProductDatabase)),
-) -> List[ProductResponse]:
+) -> List[ProductOfferResponse]:
     try:
         return await database.get_all()
     except EntityDoesNotExist:
