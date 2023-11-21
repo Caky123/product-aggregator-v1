@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from fastapi import APIRouter, Body, Depends, HTTPException, status
-
+from typing import List
 from app.auth.jwt_bearer import jwtBearer
 from app.db.err import EntityDoesNotExist
 from app.db.product_database import ProductDatabase
@@ -27,7 +27,7 @@ router = APIRouter()
             "description": "External offer service authorize fail."
         },
     },
-    response_model=None,
+    response_model=CreateProductResponse,
     status_code=status.HTTP_201_CREATED,
 )
 async def create_products(
@@ -74,7 +74,7 @@ async def update_product(
         status.HTTP_200_OK: {"description": "Product was removed."},
         status.HTTP_404_NOT_FOUND: {"description": "Product not found."},
     },
-    response_model=None,
+    response_model=DeleteProductResponse,
 )
 async def delete_product(
     product_id: UUID, database: ProductDatabase = Depends(get_database(ProductDatabase))
@@ -97,7 +97,7 @@ async def delete_product(
         status.HTTP_200_OK: {"description": "Product was retrieved."},
         status.HTTP_404_NOT_FOUND: {"description": "Product not found."},
     },
-    response_model=None,
+    response_model=ProductResponse,
 )
 async def get_product(
     product_id: UUID, database: ProductDatabase = Depends(get_database(ProductDatabase))
@@ -120,7 +120,7 @@ async def get_product(
         status.HTTP_200_OK: {"description": "Products was retrieved."},
         status.HTTP_404_NOT_FOUND: {"description": "Products not found."},
     },
-    response_model=None,
+    response_model=List[ProductResponse],
 )
 async def get_products(
     database: ProductDatabase = Depends(get_database(ProductDatabase)),
