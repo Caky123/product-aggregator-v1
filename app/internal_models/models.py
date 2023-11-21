@@ -16,7 +16,7 @@ class ProductRequest(BaseInterfaceModel):
 
 
 class ProductResponse(ProductRequest):
-    id: str = Field(example="a38269b5-1d44-434f-94f4-6c3ffb2a2ee6")
+    id: UUID = Field(example=UUID("a38269b5-1d44-434f-94f4-6c3ffb2a2ee6"))
 
 
 class CreateProductRequest(ProductRequest):
