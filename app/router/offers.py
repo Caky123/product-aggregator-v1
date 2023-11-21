@@ -26,7 +26,7 @@ router = APIRouter()
         },
         status.HTTP_404_NOT_FOUND: {"description": "Offer history not found"},
     },
-    response_model=None,
+    response_model=OfferHistoryPagingResponse,
 )
 async def get_offer(
     offer_id: UUID,
@@ -55,7 +55,7 @@ async def get_offer(
         status.HTTP_400_BAD_REQUEST: {"description": "Start time after end time."},
         status.HTTP_404_NOT_FOUND: {"description": "Offer history not found."},
     },
-    response_model=None,
+    response_model=OfferTrendResponse,
 )
 async def get_offer_trend(
     offer_id: UUID,
