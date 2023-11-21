@@ -9,6 +9,7 @@ from app.db.sessions import get_database
 from app.internal_models.models import (CreateProductRequest,
                                         CreateProductResponse,
                                         DeleteProductResponse, ProductResponse,
+                                        ProductOfferResponse,
                                         UpdateProductRequest,
                                         UpdateProductResponse)
 
@@ -120,7 +121,7 @@ async def get_product(
         status.HTTP_200_OK: {"description": "Products was retrieved."},
         status.HTTP_404_NOT_FOUND: {"description": "Products not found."},
     },
-    response_model=List[ProductResponse],
+    response_model=List[ProductOfferResponse],
 )
 async def get_products(
     database: ProductDatabase = Depends(get_database(ProductDatabase)),
