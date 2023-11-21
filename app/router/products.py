@@ -98,11 +98,11 @@ async def delete_product(
         status.HTTP_200_OK: {"description": "Product was retrieved."},
         status.HTTP_404_NOT_FOUND: {"description": "Product not found."},
     },
-    response_model=ProductResponse,
+    response_model=ProductOfferResponse,
 )
 async def get_product(
     product_id: UUID, database: ProductDatabase = Depends(get_database(ProductDatabase))
-) -> ProductResponse:
+) -> ProductOfferResponse:
     try:
         return await database.get(product_id=product_id)
     except EntityDoesNotExist:
