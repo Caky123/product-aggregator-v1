@@ -1,9 +1,7 @@
 from datetime import datetime
 from typing import List
 from uuid import UUID
-
-from pydantic import BaseModel, EmailStr, Extra
-from sqlmodel import Field
+from pydantic import BaseModel, EmailStr, Extra, Field
 
 
 class BaseInterfaceModel(BaseModel):
@@ -13,12 +11,12 @@ class BaseInterfaceModel(BaseModel):
 
 
 class ProductRequest(BaseInterfaceModel):
-    name: str = Field(nullable=False)
-    description: str = Field(nullable=False)
+    name: str = Field(example="product-name")
+    description: str = Field(example="product-description")
 
 
 class ProductResponse(ProductRequest):
-    id: UUID
+    id: str = Field(example="a38269b5-1d44-434f-94f4-6c3ffb2a2ee6")
 
 
 class CreateProductRequest(ProductRequest):
@@ -42,13 +40,13 @@ class UpdateProductResponse(CreateProductRequest):
 
 
 class OfferB(BaseInterfaceModel):
-    created_at: datetime
-    price: int
-    items_in_stock: int
+    created_at: datetime = Field(example="2011-08-12T20:17:46.384")
+    price: int = Field(example=100)
+    items_in_stock: int = Field(example=30)
 
 
 class OfferBase(OfferB):
-    offer_id: UUID
+    offer_id: str = Field(example="a38269b5-1d44-434f-94f4-6c3ffb2a2ee6")
 
 
 class OfferResponse(OfferBase):
@@ -60,14 +58,14 @@ class ProductOfferResponse(ProductResponse):
 
 
 class Paging(BaseInterfaceModel):
-    page: int
-    limit: int
-    offset: int
-    total_pages: int
+    page: int = Field(example=10)
+    limit: int = Field(example=100)
+    offset: int = Field(example=10)
+    total_pages: int = Field(example=10)
 
 
 class OfferHistoryResponse(BaseInterfaceModel):
-    id: UUID
+    id: str = Field(example="a38269b5-1d44-434f-94f4-6c3ffb2a2ee6")
     history: List[OfferB]
 
 
@@ -76,7 +74,7 @@ class OfferHistoryPagingResponse(OfferHistoryResponse):
 
 
 class OfferTrendResponse(OfferHistoryResponse):
-    price_trend: float
+    price_trend: float = Field(example=12.5)
 
 
 class Token(BaseInterfaceModel):
