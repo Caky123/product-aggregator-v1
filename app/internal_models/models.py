@@ -46,7 +46,7 @@ class OfferB(BaseInterfaceModel):
 
 
 class OfferBase(OfferB):
-    offer_id: str = Field(example="a38269b5-1d44-434f-94f4-6c3ffb2a2ee6")
+    offer_id: UUID = Field(example="a38269b5-1d44-434f-94f4-6c3ffb2a2ee6")
 
 
 class OfferResponse(OfferBase):
@@ -65,7 +65,7 @@ class Paging(BaseInterfaceModel):
 
 
 class OfferHistoryResponse(BaseInterfaceModel):
-    id: str = Field(example="a38269b5-1d44-434f-94f4-6c3ffb2a2ee6")
+    id: UUID = Field(example="a38269b5-1d44-434f-94f4-6c3ffb2a2ee6")
     history: List[OfferB]
 
 
